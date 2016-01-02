@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[local function centerPrint(text, ny)
+	if type(text) == "table" then
+		for _,v in pairs(text) do
+			centerPrint(v)
+		end
+	else
+		local _,y = term.getCursorPos()
+		local w,h = term.getSize()
+		term.setCursorPos(math.ceil((w-#text)/2), ny or y)
+		print(text)
+	end
+end]]></content>
+	<tabTrigger>function centerPrint</tabTrigger>
+	<scope>source.computercraft</scope>
+	<description>Center Print Function</description>
+</snippet>

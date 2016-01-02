@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+--[[
+	@desc ${2:Description}
+	@return ${9:Any} ${10:returnedValue}
+]]
+function ${TM_FILENAME/(.+)\..+/$1/}:${1:functionName}( ${3:Any} ${4:arg1}, ${5:Any} ${6:arg2}, ${7:Any} ${8:arg3} )
+	return ${10:returnedValue}
+end
+]]></content>
+	<tabTrigger>if</tabTrigger>
+	<scope>source.computercraft</scope>
+</snippet>
