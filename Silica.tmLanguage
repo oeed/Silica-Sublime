@@ -618,49 +618,30 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
+					<string>support.type.enum.silica</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
 					<string>keyword.other.silica</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>\b([A-Z]\w*)\b\s*?(\.(?:allowsNil|link))?</string>
+			<string>\b([A-Z]\w*)(\.[a-z]\w*s)?\b\s*?(\.(?:allowsNil|link))?</string>
 			<key>name</key>
 			<string>meta.type.silica</string>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#valuetype-parameters</string>
-				</dict>
-			</array>
-		</dict>
-		<key>valuetype-parameters</key>
-		<dict>
-			<key>name</key>
-			<string>variable.parameter.function.silica</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#literal</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#system</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#keyword</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#operator</string>
+					<string>#standard</string>
 				</dict>
 			</array>
 		</dict>
 		<key>valuetype-with-default</key>
 		<dict>
 			<key>begin</key>
-			<string>\b([A-Z]\w*)\b\s*?(\()</string>
+			<string>\b([A-Z]\w*)(\.[a-z]\w*s)?\b\s*?(\()</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -669,6 +650,11 @@
 					<string>support.type.silica</string>
 				</dict>
 				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.enum.silica</string>
+				</dict>
+				<key>3</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.parameters.begin.silica</string>
@@ -695,7 +681,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#valuetype-parameters</string>
+					<string>#standard</string>
 				</dict>
 			</array>
 		</dict>

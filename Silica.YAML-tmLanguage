@@ -33,33 +33,27 @@ repository:
 
   valuetype-with-default:
     name: meta.type.silica
-    begin: \b([A-Z]\w*)\b\s*?(\()
+    begin: \b([A-Z]\w*)(\.[a-z]\w*s)?\b\s*?(\()
     end: (\))(\.(?:allowsNil|link))?
     beginCaptures:
       '1': {name: support.type.silica}
-      '2': {name: punctuation.definition.parameters.begin.silica}
+      '2': {name: support.type.enum.silica}
+      '3': {name: punctuation.definition.parameters.begin.silica}
     endCaptures:
       '1': {name: punctuation.definition.parameters.end.silica}
       '2': {name: keyword.other.silica}
     patterns:
-    - include: '#valuetype-parameters'
+    - include: '#standard'
 
   valuetype-no-default:
     name: meta.type.silica
-    match: \b([A-Z]\w*)\b\s*?(\.(?:allowsNil|link))?
+    match: \b([A-Z]\w*)(\.[a-z]\w*s)?\b\s*?(\.(?:allowsNil|link))?
     captures:
       '1': {name: support.type.silica}
-      '2': {name: keyword.other.silica}
+      '2': {name: support.type.enum.silica}
+      '3': {name: keyword.other.silica}
     patterns:
-    - include: '#valuetype-parameters'
-
-  valuetype-parameters:
-    name: variable.parameter.function.silica
-    patterns:
-    - include: '#literal'
-    - include: '#system'
-    - include: '#keyword'
-    - include: '#operator'
+    - include: '#standard'
 
   # Properties table area and class/interface declaration
   property:
