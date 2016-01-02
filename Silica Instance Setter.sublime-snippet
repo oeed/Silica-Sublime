@@ -1,8 +1,5 @@
 <snippet>
 	<content><![CDATA[
---[[
-    @desc ${2:Description}
-]]
 function ${TM_FILENAME/(.+)\..+/$1/}.${1:propertyName}:set( ${1:propertyName} )
     $0
 end
