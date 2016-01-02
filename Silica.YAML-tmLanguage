@@ -1,117 +1,289 @@
-comment: 'Silica Syntax: Version 1.0. Based upon the ComputerCraft syntax by GravityScore.'
+comment: 'Silica Syntax: Version 1.0.'
 fileTypes: [slua]
 foldingStartMarker: ^\s*\b(function|local\s+function|if|elseif|for)\b|{[ \t]*$|\[\[
 foldingStopMarker: \bend\b|^\s*}|\]\]
 keyEquivalent: ^~L
 name: Silica
-patterns:
-- captures:
-    '1': {name: keyword.declaration.silica}
-    '2': {name: entity.name.function.silica}
-  match: \b(class|extends)\s+([A-Z]\w*) # TODO: enforce first capital letter
-  name: meta.class.silica
-- captures:
-    '1': {name: keyword.declaration.silica}
-    '2': {name: entity.name.function.silica}
-  match: \b(interface)\s+(I[A-Z]\w*) # TODO: enforce first capital letter
-  name: meta.interface.silica
-- captures:
-    '1': {name: support.type.silica}
-    '2': {name: keyword.other.silica}
-  match: \b(Any|String|Boolean|Number|Table|Function|Thread)\b(\.(?:allowsNil|link))?
-  name: meta.type.silica
-- captures:
-    '1': {name: entity.name.property.silica}
-    '2': {name: support.type.silica}
-    '3': {name: keyword.other.silica}
-  match: \b(\w+)\s*=\s*\b([A-Z]\w*)(\.(?:allowsNil|link))? # TODO: enforce first capital letter and check that it's within class properties table
-  name: meta.type.silica
-- captures:
-    '1': {name: entity.name.function.silica}
-  match: \b(Enum)\b\s*\(
-  name: meta.enum.silica
-- captures:
-    '1': {name: variable.language.static.silica}
-  match: \b(static)\b
-  name: meta.static.silica
-- captures:
-    '1': {name: variable.language.super.silica}
-  match: \b(super)\b
-  name: meta.super.silica
-# - captures:
-#     '1': {name: support.class.silica}
-#   match: \b([A-Z]\w*)\b # TODO: first letter capital
-#   name: meta.variable.class.silica
-# - captures:
-#     '1': {name: keyword.control.silica}
-#     '2': {name: entity.name.function.scope.silica}
-#     '3': {name: entity.name.function.silica} # TODO: try and allow variable types within the parameters
-#     # '4': {name: punctuation.definition.parameters.begin.silica}
-#     # '5': {name: variable.parameter.function.silica}
-#     # '6': {name: punctuation.definition.parameters.end.silica}
-#   match: \b(function)\s+([a-zA-Z_.:]+[.:])?([a-zA-Z_]\w*)\s* #(\()([^)]*)(\))
-  # name: meta.function.silica
-
-# Constants/Enums (i.e. Event.phases.BEFORE or IS_CAPITALISED)
-- {match: '((?:\b[a-z]\w*s\b\.)?(?:\b[A-Z_]{2,}\b))',
-  name: constant.language.silica}
-
-- captures:
-    '1': {name: entity.name.function.scope.silica}
-    '2': {name: entity.name.function.silica}
-    '3': {name: keyword.operator.silica}
-    '4': {name: keyword.control.silica}
-    # '5': {name: punctuation.definition.parameters.begin.silica}
-    # '6': {name: variable.parameter.function.silica}
-    # '7': {name: punctuation.definition.parameters.end.silica}
-  match: ([a-zA-Z_.:]+[.:])?([a-zA-Z_]\w*)\s*(\=)\s*(function)\s*(\()([^)]*)(\))
-  name: meta.function.silica
-- {match: '(?<![\d.])\s0x[a-fA-F\d]+|\b\d+(\.\d+)?([eE]-?\d+)?|\.\d+([eE]-?\d+)?',
-  name: constant.numeric.silica}
-- begin: ''''
-  beginCaptures:
-    '0': {name: punctuation.definition.string.begin.silica}
-  end: ''''
-  endCaptures:
-    '0': {name: punctuation.definition.string.end.silica}
-  name: string.quoted.single.silica
-  patterns:
-  - {match: \\., name: constant.character.escape.silica}
-- begin: '"'
-  beginCaptures:
-    '0': {name: punctuation.definition.string.begin.silica}
-  end: '"'
-  endCaptures:
-    '0': {name: punctuation.definition.string.end.silica}
-  name: string.quoted.double.silica
-  patterns:
-  - {match: \\., name: constant.character.escape.silica}
-- begin: (?<!--)\[(=*)\[
-  beginCaptures:
-    '0': {name: punctuation.definition.string.begin.silica}
-  end: \]\1\]
-  endCaptures:
-    '0': {name: punctuation.definition.string.end.silica}
-  name: string.quoted.other.multiline.silica
-- begin: --\[(=*)\[
-  captures:
-    '0': {name: punctuation.definition.comment.silica}
-  end: \]\1\]
-  name: comment.block.silica
-- captures:
-    '1': {name: punctuation.definition.comment.silica}
-  match: (--)(?!\[\[).*$\n?
-  name: comment.line.double-dash.silica
-- {match: \b(break|do|else|for|if|elseif|return|then|repeat|while|until|end|function|local|in|try|catch)\b,
-  name: keyword.control.silica}
-- {match: '(?<![^.]\.|:)\b(false|nil|true|_G|_VERSION|math\.(pi|huge)|gps\.CHANNEL_GPS|(colors|colours)\.(white|orange|magenta|lightBlue|yellow|lime|pink|cyan|purple|blue|brown|green|red|black)|colours\.grey|colors\.gray|colours\.lightGrey|colors\.lightGray|keys\.([a-z]|(f[1-9]{1}([0-5])?)|(numPad[0-9])|zero|one|two|three|four|five|six|seven|eight|nine|home|period|comma|numPadEquals|kana|end|return|up|down|right|left|rightShift|leftShift|rightCtrl|leftCtrl|tab|pageDown|pageUp|underscore|colon|semiColon|slash|space|enter|delete|backspace|rightAlt|leftAlt|backslash|rightBracket|leftBracket|numPadSubtract|numPadEnter|capsLock|stop|kanji|insert|numPadAdd|scollLock|yen|ax|equals|numPadDecimal|numLock|minus|pause|numPadComma|cimcumflex|noconvert|grave|apostrophe|at|convert|numPadDivide|multiply)|rednet\.CHANNEL_BROADCAST)\b|(?<![.])\.{3}(?!\.)',
-  name: constant.language.silica}
-- {match: '(?<![^.]\.|:)\b(self)\b', name: variable.language.self.silica}
-- {match: '(?<![^.]\.|:)\b(assert|dofile|error|getfenv|getmetatable|ipairs|loadfile|loadstring|pairs|pcall|print|rawequal|rawget|rawset|setfenv|setmetatable|sleep|next|select|tonumber|tostring|type|unpack|write|read|xpcall|printError)\b(?=[(
-    {"''])', name: support.function.silica}
-- {match: '(?<![^.]\.|:)\b(bit\.(blogic_rshift|tobits|blshift|brshift|bxor|bor|band|bnot|tonumb)|(colors|colours)\.(combine|subtract|test)|coroutine\.(create|resume|running|status|wrap|yield)|disk\.(isPresent|hasData|getMountPath|getLabel|setLabel|getID|hasAudio|getAudioTitle|playAudio|stopAudio|eject)|fs\.(list|exists|isDir|isReadOnly|getFreeSpace|getName|getDrive|getSize|makeDir|move|copy|delete|combine|open)|gps\.locate|help\.(path|setPath|lookup|topics)|http\.(request|get|post)|io\.(close|open|read|write|type)|math\.(abs|acos|asin|atan2?|ceil|cosh?|deg|exp|floor|fmod|frexp|ldexp|log|log10|max|min|modf|pow|rad|random|randomseed|sinh?|sqrt|tanh?)|os\.(version|getComputerID|computerID|getComputerLabel|computerLabel|setComputerLabel|run|loadAPI|unloadAPI|pullEvent|pullEventRaw|queueEvent|clock|startTimer|sleep|time|day|setAlarm|shutdown|reboot)|paintutils\.(loadImage|drawImage|drawPixel|drawLine)|parallel\.(waitForAny|waitForAll)|peripheral\.(isPresent|getType|getMethods|call|wrap|getNames)|rednet\.(run|open|close|announce|send|broadcast|receive|isOpen)|(rs|redstone)\.(getSides|getInput|setInput|setOutput|getOutput|setBundledOutput|getBundledOutput|getBundledInput|testBundledInput|getAnalogInput|getAnalogOutput|setAnalogueOutput|setAnalogOutput|getAnalogueOutput|getAnalogueInput|)|shell\.(exit|dir|setDir|path|setPath|resolve|resolveProgram|aliases|setAlias|clearAlias|programs|run|getRunningProgram)|string\.(byte|char|dump|find|format|gmatch|gsub|len|lower|match|rep|reverse|sub|upper)|table\.(foreachi|foreach|getn|concat|insert|maxn|remove|sort)|(term|term\.native|native)\.(write|clear|clearLine|getCursorPos|setCursorPos|setCursorBlink|isColor|isColour|getSize|scroll|redirect|restore|setTextColor|setTextColour|setBackgroundColor|setBackgroundColour)|textutils\.(slowPrint|slowWrite|formatTime|tabulate|pagedTabulate|pagedPrint|serialize|unserialize|urlEncode)|vector\.new|turtle\.(craft|forward|back|up|down|turnLeft|turnRight|select|getItemCount|getItemSpace|attack|attackUp|attackDown|dig|digUp|digDown|place|placeUp|placeDown|detect|detectUp|detectDown|compare|compareUp|compareDown|compareTo|drop|dropUp|dropDown|suck|suckUp|suckDown|refuel|getFuelLevel|transferTo)|keys\.(getName)|emulog\.(clear|log))\b(?=[(
-    {])', name: support.function.library.silica}
-- {match: \b(and|or|not)\b, name: keyword.operator.silica}
-- {match: '\+|-|%|#|\*|\/|\^|==?|~=|<=?|>=?|(?<!\.)\.{2}(?!\.)', name: keyword.operator.silica}
-scopeName: source.silica
 uuid: c8c30617-67f4-419b-8415-b9bc2d999805
+scopeName: source.silica
+
+patterns:
+- include: '#property'
+- include: '#class-function'
+- include: '#standard'
+
+repository:
+  # Standard includes
+  standard:
+    patterns:
+    - include: '#function'
+    - include: '#constant'
+    - include: '#literal'
+    - include: '#comment'
+    - include: '#keyword'
+    - include: '#operator'
+    - include: '#system'
+    - include: '#special'
+    - include: '#class'
+
+  valuetype:
+    patterns:
+    - include: '#valuetype-with-default'
+    - include: '#valuetype-no-default'
+
+  valuetype-with-default:
+    name: meta.type.silica
+    begin: \b([A-Z]\w*)\b\s*?(\()
+    end: (\))(\.(?:allowsNil|link))?
+    beginCaptures:
+      '1': {name: support.type.silica}
+      '2': {name: punctuation.definition.parameters.begin.silica}
+    endCaptures:
+      '1': {name: punctuation.definition.parameters.end.silica}
+      '2': {name: keyword.other.silica}
+    patterns:
+    - include: '#valuetype-parameters'
+
+  valuetype-no-default:
+    name: meta.type.silica
+    match: \b([A-Z]\w*)\b\s*?(\.(?:allowsNil|link))?
+    captures:
+      '1': {name: support.type.silica}
+      '2': {name: keyword.other.silica}
+    patterns:
+    - include: '#valuetype-parameters'
+
+  valuetype-parameters:
+    name: variable.parameter.function.silica
+    patterns:
+    - include: '#literal'
+    - include: '#system'
+    - include: '#keyword'
+    - include: '#operator'
+
+  # Properties table area and class/interface declaration
+  property:
+    begin: ^(?:(class)\s+([A-Z]\w*)(?:\s+(extends)\s+([A-Z]\w*)|\s+(implements)\s+(I[A-Z]\w*))*|(interface)\s+(I[A-Z]\w*))\s*\{
+    beginCaptures:
+      '1': {name: keyword.declaration.silica}
+      '2': {name: support.class.silica}
+      '3': {name: keyword.declaration.silica}
+      '4': {name: support.class.silica}
+      '5': {name: keyword.declaration.silica}
+      '6': {name: support.class.silica}
+      '7': {name: keyword.declaration.silica}
+      '8': {name: support.class.silica}
+    end: ^\}\s*$
+    patterns:
+    - include: '#constant'
+    - include: '#valuetype'
+    - include: '#standard'
+    - include: '#property-enum'
+    - include: '#property-declaration'
+
+  # Property declaration key
+  property-declaration:
+    name: meta.type.property.silica
+    captures:
+      '1': {name: entity.other.attribute-name} #entity.name.property.silica}
+    match: \b(\w+)\b\s*=
+
+  # Enum declaration (i.e. phases = Enum( Number, {} ))
+  property-enum:
+    captures:
+      '1': {name: support.type.enum.silica}
+      '2': {name: support.type.enum.silica}
+    match: (\b[a-z]\w*s\b)\s*=\s*(\bEnum\b)\s*\(
+    name: meta.type.enum.silica
+
+  # Properties table area and class/interface declaration
+  class-function:
+    begin: ^(function)\s+([A-Z]\w*)(?:\.(static))?(?:(:\w+)|(\.\w+)(:(?:get|set|action)))(\()
+    beginCaptures:
+      '1': {name: keyword.control.silica}
+      '2': {name: support.class.silica}
+      '3': {name: variable.language.super.silica}
+      # '1': {name: entity.name.function.silica}
+      # '2': {name: entity.name.function.silica}
+      # '3': {name: entity.name.function.silica}
+      '4': {name: entity.name.function.silica}
+      '5': {name: entity.name.function.silica}
+      # '5': {name: entity.other.attribute-name}
+      # '6': {name: entity.name.function.silica}
+      '6': {name: keyword.other.silica}
+      '7': {name: punctuation.definition.parameters.begin.silica}
+    end: (\))\n
+    endCaptures:
+      '1': {name: punctuation.definition.parameters.end.silica}
+    patterns:
+    - include: '#constant'
+    - include: '#valuetype'
+    - include: '#standard'
+    - include: '#property-enum'
+    - include: '#property-declaration'
+
+  # Constants/Enums (i.e. Event.phases.BEFORE or IS_CAPITALISED)
+  constant:
+    match: ((?:\b[a-z]\w*s\b\.)?(?:\b[A-Z][A-Z_]*[A-Z]\b))
+    name: constant.language.silica
+
+  # Class name references (that aren't ValueTypes)
+  class:
+    match: \b([A-Z]\w*)\b
+    name: support.class.silica
+
+# Literals
+  literal:
+    patterns:
+    - include: '#number'
+    - include: '#string'
+
+  # Numbers
+  number:
+    match: (?<![\d.])\s0x[a-fA-F\d]+|\b\d+(\.\d+)?([eE]-?\d+)?|\.\d+([eE]-?\d+)?
+    name: constant.numeric.silica
+  
+## Strings
+  string:
+    patterns:
+    - include: '#string-single-quote'
+    - include: '#string-double-quote'
+    - include: '#string-multi-line'
+
+  # Single-quote string
+  string-single-quote:
+    name: string.quoted.single.silica
+    begin: \'
+    end: \'
+    patterns:
+    - {match: \\., name: constant.character.escape.silica}
+
+  # Double-quote string
+  string-double-quote:
+    name: string.quoted.double.silica
+    begin: \"
+    end: \"
+    patterns:
+    - {match: \\., name: constant.character.escape.silica}
+
+  # Multi-line string
+  string-multi-line:
+    name: string.quoted.other.multiline.silica
+    begin: (?<!--)\[(=*)\[
+    end: \]\1\]
+
+# Comments
+  comment:
+    patterns:
+    - include: '#comment-single-line'
+    - include: '#comment-multi-line'
+
+  # Single-line comment
+  comment-single-line:
+    match: (?:--)(?!\[\[).*$\n?
+    name: comment.line.double-dash.silica
+
+  # Multi-line comment
+  comment-multi-line:
+    begin: --\[(=*)\[
+    end: \]\1\]
+    name: comment.block.silica
+
+# Keywords
+  keyword:
+    match: \b(break|do|else|for|if|elseif|return|then|repeat|while|until|end|function|local|in|try|catch)\b
+    name: keyword.control.silica
+
+# Operators
+  operator:
+    patterns:
+    - include: '#word-operator'
+    - include: '#symbol-operator'
+
+  # Word operators
+  word-operator:
+    match: \b(and|or|not)\b
+    name: keyword.operator.silica
+
+  # Symbol operators
+  symbol-operator:
+    match: \+|-|%|#|\*|\/|\^|==?|~=|<=?|>=?|(?<!\.)\.{2}(?!\.)
+    name: keyword.operator.silica
+
+# Functions (non-class functions, that is)
+  
+  function:
+    patterns:
+    - include: '#function-standard'
+    - include: '#function-assigned'
+
+  # Standard function declaration
+  function-standard:
+    name: meta.function.computercraft
+    captures:
+      '1': {name: keyword.control.computercraft}
+      '2': {name: entity.name.function.scope.computercraft}
+      '3': {name: entity.name.function.computercraft}
+      '4': {name: punctuation.definition.parameters.begin.computercraft}
+      '5': {name: variable.parameter.function.computercraft}
+      '6': {name: punctuation.definition.parameters.end.computercraft}
+    match: \b(function)\s+([a-zA-Z_.:]+[.:])?([a-zA-Z_]\w*)\s*(\()([^)]*)(\))
+
+  # Function assigned to a value manually
+  function-assigned:
+    name: meta.function.computercraft
+    captures:
+      '1': {name: entity.name.function.scope.computercraft}
+      '2': {name: entity.name.function.computercraft}
+      '3': {name: keyword.operator.computercraft}
+      '4': {name: keyword.control.computercraft}
+      '5': {name: punctuation.definition.parameters.begin.computercraft}
+      '6': {name: variable.parameter.function.computercraft}
+      '7': {name: punctuation.definition.parameters.end.computercraft}
+    match: ([a-zA-Z_.:]+[.:])?([a-zA-Z_]\w*)\s*(\=)\s*(function)\s*(\()([^)]*)(\))
+
+# System
+  system:
+    patterns:
+    - include: '#system-constant'
+    - include: '#system-function'
+    - include: '#system-api'
+
+  # System constants (not Silica constants)
+  system-constant:
+    match: (?<![^.]\.|:)\b(false|nil|true|_G|_VERSION|math\.(pi|huge))\b|(?<![.])\.{3}(?!\.)
+    name: constant.language.silica
+
+  # System functions (not Silica functions)
+  system-function:
+    match: (?<![^.]\.|:)\b(getfenv|getmetatable|ipairs|pairs|rawequal|rawget|rawset|setfenv|setmetatable|next|select|tonumber|tostring|type|unpack)\b(?=[({"''])
+    name: support.function.silica
+
+  # System API functions (not Silica API functions)
+  system-api:
+    match: (?<![^.]\.|:)\b(bit\.(blogic_rshift|tobits|blshift|brshift|bxor|bor|band|bnot|tonumb)|(colors|colours)\.(combine|subtract|test)|coroutine\.(create|resume|running|status|wrap|yield)|math\.(abs|acos|asin|atan2?|ceil|cosh?|deg|exp|floor|fmod|frexp|ldexp|log|log10|max|min|modf|pow|rad|random|randomseed|sinh?|sqrt|tanh?)|os\.(version|getComputerID|computerID|getComputerLabel|computerLabel|setComputerLabel|run|loadAPI|unloadAPI|pullEvent|pullEventRaw|queueEvent|clock|startTimer|sleep|time|day|setAlarm|shutdown|reboot)|shell\.(exit|dir|setDir|path|setPath|resolve|resolveProgram|aliases|setAlias|clearAlias|programs|run|getRunningProgram)|string\.(byte|char|dump|find|format|gmatch|gsub|len|lower|match|rep|reverse|sub|upper)|table\.(foreachi|foreach|getn|concat|insert|maxn|remove|sort)vector\.new)\b(?=[({])
+    name: support.function.library.silica
+
+    # |Graphics.((?:colors|colours)\.(?:WHITE|ORANGE|MAGENTA|LIGHT_BLUE|YELLOW|LIME|PINK|CYAN|PURPLE|BLUE|BROWN|GREEN|RED|BLACK|GREY|GRAY|LIGHT_GREY|LIGHT_GRAY))
+
+# Special variable references
+  special:
+    patterns:
+    - include: '#special-self'
+    - include: '#special-super'
+    - include: '#special-static'
+
+  # self references
+  special-self:
+    match: \b(self)\b
+    name: variable.language.self.silica
+
+  # super references
+  special-super:
+    match: \b(super)\b
+    name: variable.language.super.silica
+
+  # static references
+  special-static:
+    match: \b(static)\b
+    name: variable.language.static.silica

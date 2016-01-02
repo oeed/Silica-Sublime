@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>comment</key>
-	<string>Silica Syntax: Version 1.0. Based upon the ComputerCraft syntax by GravityScore.</string>
+	<string>Silica Syntax: Version 1.0.</string>
 	<key>fileTypes</key>
 	<array>
 		<string>slua</string>
@@ -19,223 +19,494 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.declaration.silica</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function.silica</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>\b(class|extends)\s+([A-Z]\w*)</string>
-			<key>name</key>
-			<string>meta.class.silica</string>
+			<key>include</key>
+			<string>#property</string>
 		</dict>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.declaration.silica</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function.silica</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>\b(interface)\s+(I[A-Z]\w*)</string>
-			<key>name</key>
-			<string>meta.interface.silica</string>
+			<key>include</key>
+			<string>#class-function</string>
 		</dict>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>support.type.silica</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.silica</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>\b(Any|String|Boolean|Number|Table|Function|Thread)\b(\.(?:allowsNil|link))?</string>
-			<key>name</key>
-			<string>meta.type.silica</string>
+			<key>include</key>
+			<string>#standard</string>
 		</dict>
+	</array>
+	<key>repository</key>
+	<dict>
+		<key>class</key>
 		<dict>
-			<key>captures</key>
+			<key>match</key>
+			<string>\b([A-Z]\w*)\b</string>
+			<key>name</key>
+			<string>support.class.silica</string>
+		</dict>
+		<key>class-function</key>
+		<dict>
+			<key>begin</key>
+			<string>^(function)\s+([A-Z]\w*)(?:\.(static))?(?:(:\w+)|(\.\w+)(:(?:get|set|action)))(\()</string>
+			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.property.silica</string>
+					<string>keyword.control.silica</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>support.type.silica</string>
+					<string>support.class.silica</string>
 				</dict>
 				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.silica</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>\b(\w+)\s*=\s*\b([A-Z]\w*)(\.(?:allowsNil|link))?</string>
-			<key>name</key>
-			<string>meta.type.silica</string>
-		</dict>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function.silica</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>\b(Enum)\b\s*\(</string>
-			<key>name</key>
-			<string>meta.enum.silica</string>
-		</dict>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>variable.language.static.silica</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>\b(static)\b</string>
-			<key>name</key>
-			<string>meta.static.silica</string>
-		</dict>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>variable.language.super.silica</string>
 				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.silica</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.silica</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.silica</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.begin.silica</string>
+				</dict>
 			</dict>
-			<key>match</key>
-			<string>\b(super)\b</string>
-			<key>name</key>
-			<string>meta.super.silica</string>
+			<key>end</key>
+			<string>(\))\n</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.end.silica</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#constant</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#valuetype</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#standard</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#property-enum</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#property-declaration</string>
+				</dict>
+			</array>
 		</dict>
+		<key>comment</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#comment-single-line</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comment-multi-line</string>
+				</dict>
+			</array>
+		</dict>
+		<key>comment-multi-line</key>
+		<dict>
+			<key>begin</key>
+			<string>--\[(=*)\[</string>
+			<key>end</key>
+			<string>\]\1\]</string>
+			<key>name</key>
+			<string>comment.block.silica</string>
+		</dict>
+		<key>comment-single-line</key>
 		<dict>
 			<key>match</key>
-			<string>((?:\b[a-z]\w*s\b\.)?(?:\b[A-Z_]{2,}\b))</string>
+			<string>(?:--)(?!\[\[).*$\n?</string>
+			<key>name</key>
+			<string>comment.line.double-dash.silica</string>
+		</dict>
+		<key>constant</key>
+		<dict>
+			<key>match</key>
+			<string>((?:\b[a-z]\w*s\b\.)?(?:\b[A-Z][A-Z_]*[A-Z]\b))</string>
 			<key>name</key>
 			<string>constant.language.silica</string>
 		</dict>
+		<key>function</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#function-standard</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#function-assigned</string>
+				</dict>
+			</array>
+		</dict>
+		<key>function-assigned</key>
 		<dict>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.scope.silica</string>
+					<string>entity.name.function.scope.computercraft</string>
 				</dict>
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>entity.name.function.silica</string>
+					<string>entity.name.function.computercraft</string>
 				</dict>
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>keyword.operator.silica</string>
+					<string>keyword.operator.computercraft</string>
 				</dict>
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>keyword.control.silica</string>
+					<string>keyword.control.computercraft</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.begin.computercraft</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.computercraft</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.end.computercraft</string>
 				</dict>
 			</dict>
 			<key>match</key>
 			<string>([a-zA-Z_.:]+[.:])?([a-zA-Z_]\w*)\s*(\=)\s*(function)\s*(\()([^)]*)(\))</string>
 			<key>name</key>
-			<string>meta.function.silica</string>
+			<string>meta.function.computercraft</string>
 		</dict>
+		<key>function-standard</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.computercraft</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.scope.computercraft</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.computercraft</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.begin.computercraft</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.computercraft</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.end.computercraft</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\b(function)\s+([a-zA-Z_.:]+[.:])?([a-zA-Z_]\w*)\s*(\()([^)]*)(\))</string>
+			<key>name</key>
+			<string>meta.function.computercraft</string>
+		</dict>
+		<key>keyword</key>
+		<dict>
+			<key>match</key>
+			<string>\b(break|do|else|for|if|elseif|return|then|repeat|while|until|end|function|local|in|try|catch)\b</string>
+			<key>name</key>
+			<string>keyword.control.silica</string>
+		</dict>
+		<key>literal</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#number</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#string</string>
+				</dict>
+			</array>
+		</dict>
+		<key>number</key>
 		<dict>
 			<key>match</key>
 			<string>(?&lt;![\d.])\s0x[a-fA-F\d]+|\b\d+(\.\d+)?([eE]-?\d+)?|\.\d+([eE]-?\d+)?</string>
 			<key>name</key>
 			<string>constant.numeric.silica</string>
 		</dict>
+		<key>operator</key>
 		<dict>
-			<key>begin</key>
-			<string>'</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.begin.silica</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>'</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.end.silica</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>string.quoted.single.silica</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>\\.</string>
-					<key>name</key>
-					<string>constant.character.escape.silica</string>
+					<key>include</key>
+					<string>#word-operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#symbol-operator</string>
 				</dict>
 			</array>
 		</dict>
+		<key>property</key>
 		<dict>
 			<key>begin</key>
-			<string>"</string>
+			<string>^(?:(class)\s+([A-Z]\w*)(?:\s+(extends)\s+([A-Z]\w*)|\s+(implements)\s+(I[A-Z]\w*))*|(interface)\s+(I[A-Z]\w*))\s*\{</string>
 			<key>beginCaptures</key>
 			<dict>
-				<key>0</key>
+				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.begin.silica</string>
+					<string>keyword.declaration.silica</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.class.silica</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.declaration.silica</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>support.class.silica</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.declaration.silica</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>support.class.silica</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.declaration.silica</string>
+				</dict>
+				<key>8</key>
+				<dict>
+					<key>name</key>
+					<string>support.class.silica</string>
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>"</string>
-			<key>endCaptures</key>
+			<string>^\}\s*$</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#constant</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#valuetype</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#standard</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#property-enum</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#property-declaration</string>
+				</dict>
+			</array>
+		</dict>
+		<key>property-declaration</key>
+		<dict>
+			<key>captures</key>
 			<dict>
-				<key>0</key>
+				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.string.end.silica</string>
+					<string>entity.other.attribute-name</string>
 				</dict>
 			</dict>
+			<key>match</key>
+			<string>\b(\w+)\b\s*=</string>
+			<key>name</key>
+			<string>meta.type.property.silica</string>
+		</dict>
+		<key>property-enum</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.enum.silica</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.enum.silica</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(\b[a-z]\w*s\b)\s*=\s*(\bEnum\b)\s*\(</string>
+			<key>name</key>
+			<string>meta.type.enum.silica</string>
+		</dict>
+		<key>special</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#special-self</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#special-super</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#special-static</string>
+				</dict>
+			</array>
+		</dict>
+		<key>special-self</key>
+		<dict>
+			<key>match</key>
+			<string>\b(self)\b</string>
+			<key>name</key>
+			<string>variable.language.self.silica</string>
+		</dict>
+		<key>special-static</key>
+		<dict>
+			<key>match</key>
+			<string>\b(static)\b</string>
+			<key>name</key>
+			<string>variable.language.static.silica</string>
+		</dict>
+		<key>special-super</key>
+		<dict>
+			<key>match</key>
+			<string>\b(super)\b</string>
+			<key>name</key>
+			<string>variable.language.super.silica</string>
+		</dict>
+		<key>standard</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#constant</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#literal</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comment</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#keyword</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#operator</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#system</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#special</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#class</string>
+				</dict>
+			</array>
+		</dict>
+		<key>string</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#string-single-quote</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#string-double-quote</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#string-multi-line</string>
+				</dict>
+			</array>
+		</dict>
+		<key>string-double-quote</key>
+		<dict>
+			<key>begin</key>
+			<string>\"</string>
+			<key>end</key>
+			<string>\"</string>
 			<key>name</key>
 			<string>string.quoted.double.silica</string>
 			<key>patterns</key>
@@ -248,103 +519,194 @@
 				</dict>
 			</array>
 		</dict>
+		<key>string-multi-line</key>
 		<dict>
 			<key>begin</key>
 			<string>(?&lt;!--)\[(=*)\[</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.begin.silica</string>
-				</dict>
-			</dict>
 			<key>end</key>
 			<string>\]\1\]</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.end.silica</string>
-				</dict>
-			</dict>
 			<key>name</key>
 			<string>string.quoted.other.multiline.silica</string>
 		</dict>
+		<key>string-single-quote</key>
 		<dict>
 			<key>begin</key>
-			<string>--\[(=*)\[</string>
-			<key>captures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.comment.silica</string>
-				</dict>
-			</dict>
+			<string>\'</string>
 			<key>end</key>
-			<string>\]\1\]</string>
+			<string>\'</string>
 			<key>name</key>
-			<string>comment.block.silica</string>
-		</dict>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
+			<string>string.quoted.single.silica</string>
+			<key>patterns</key>
+			<array>
 				<dict>
+					<key>match</key>
+					<string>\\.</string>
 					<key>name</key>
-					<string>punctuation.definition.comment.silica</string>
+					<string>constant.character.escape.silica</string>
 				</dict>
-			</dict>
-			<key>match</key>
-			<string>(--)(?!\[\[).*$\n?</string>
-			<key>name</key>
-			<string>comment.line.double-dash.silica</string>
+			</array>
 		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b(break|do|else|for|if|elseif|return|then|repeat|while|until|end|function|local|in|try|catch)\b</string>
-			<key>name</key>
-			<string>keyword.control.silica</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(?&lt;![^.]\.|:)\b(false|nil|true|_G|_VERSION|math\.(pi|huge)|gps\.CHANNEL_GPS|(colors|colours)\.(white|orange|magenta|lightBlue|yellow|lime|pink|cyan|purple|blue|brown|green|red|black)|colours\.grey|colors\.gray|colours\.lightGrey|colors\.lightGray|keys\.([a-z]|(f[1-9]{1}([0-5])?)|(numPad[0-9])|zero|one|two|three|four|five|six|seven|eight|nine|home|period|comma|numPadEquals|kana|end|return|up|down|right|left|rightShift|leftShift|rightCtrl|leftCtrl|tab|pageDown|pageUp|underscore|colon|semiColon|slash|space|enter|delete|backspace|rightAlt|leftAlt|backslash|rightBracket|leftBracket|numPadSubtract|numPadEnter|capsLock|stop|kanji|insert|numPadAdd|scollLock|yen|ax|equals|numPadDecimal|numLock|minus|pause|numPadComma|cimcumflex|noconvert|grave|apostrophe|at|convert|numPadDivide|multiply)|rednet\.CHANNEL_BROADCAST)\b|(?&lt;![.])\.{3}(?!\.)</string>
-			<key>name</key>
-			<string>constant.language.silica</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(?&lt;![^.]\.|:)\b(self)\b</string>
-			<key>name</key>
-			<string>variable.language.self.silica</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(?&lt;![^.]\.|:)\b(assert|dofile|error|getfenv|getmetatable|ipairs|loadfile|loadstring|pairs|pcall|print|rawequal|rawget|rawset|setfenv|setmetatable|sleep|next|select|tonumber|tostring|type|unpack|write|read|xpcall|printError)\b(?=[( {"'])</string>
-			<key>name</key>
-			<string>support.function.silica</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>(?&lt;![^.]\.|:)\b(bit\.(blogic_rshift|tobits|blshift|brshift|bxor|bor|band|bnot|tonumb)|(colors|colours)\.(combine|subtract|test)|coroutine\.(create|resume|running|status|wrap|yield)|disk\.(isPresent|hasData|getMountPath|getLabel|setLabel|getID|hasAudio|getAudioTitle|playAudio|stopAudio|eject)|fs\.(list|exists|isDir|isReadOnly|getFreeSpace|getName|getDrive|getSize|makeDir|move|copy|delete|combine|open)|gps\.locate|help\.(path|setPath|lookup|topics)|http\.(request|get|post)|io\.(close|open|read|write|type)|math\.(abs|acos|asin|atan2?|ceil|cosh?|deg|exp|floor|fmod|frexp|ldexp|log|log10|max|min|modf|pow|rad|random|randomseed|sinh?|sqrt|tanh?)|os\.(version|getComputerID|computerID|getComputerLabel|computerLabel|setComputerLabel|run|loadAPI|unloadAPI|pullEvent|pullEventRaw|queueEvent|clock|startTimer|sleep|time|day|setAlarm|shutdown|reboot)|paintutils\.(loadImage|drawImage|drawPixel|drawLine)|parallel\.(waitForAny|waitForAll)|peripheral\.(isPresent|getType|getMethods|call|wrap|getNames)|rednet\.(run|open|close|announce|send|broadcast|receive|isOpen)|(rs|redstone)\.(getSides|getInput|setInput|setOutput|getOutput|setBundledOutput|getBundledOutput|getBundledInput|testBundledInput|getAnalogInput|getAnalogOutput|setAnalogueOutput|setAnalogOutput|getAnalogueOutput|getAnalogueInput|)|shell\.(exit|dir|setDir|path|setPath|resolve|resolveProgram|aliases|setAlias|clearAlias|programs|run|getRunningProgram)|string\.(byte|char|dump|find|format|gmatch|gsub|len|lower|match|rep|reverse|sub|upper)|table\.(foreachi|foreach|getn|concat|insert|maxn|remove|sort)|(term|term\.native|native)\.(write|clear|clearLine|getCursorPos|setCursorPos|setCursorBlink|isColor|isColour|getSize|scroll|redirect|restore|setTextColor|setTextColour|setBackgroundColor|setBackgroundColour)|textutils\.(slowPrint|slowWrite|formatTime|tabulate|pagedTabulate|pagedPrint|serialize|unserialize|urlEncode)|vector\.new|turtle\.(craft|forward|back|up|down|turnLeft|turnRight|select|getItemCount|getItemSpace|attack|attackUp|attackDown|dig|digUp|digDown|place|placeUp|placeDown|detect|detectUp|detectDown|compare|compareUp|compareDown|compareTo|drop|dropUp|dropDown|suck|suckUp|suckDown|refuel|getFuelLevel|transferTo)|keys\.(getName)|emulog\.(clear|log))\b(?=[( {])</string>
-			<key>name</key>
-			<string>support.function.library.silica</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b(and|or|not)\b</string>
-			<key>name</key>
-			<string>keyword.operator.silica</string>
-		</dict>
+		<key>symbol-operator</key>
 		<dict>
 			<key>match</key>
 			<string>\+|-|%|#|\*|\/|\^|==?|~=|&lt;=?|&gt;=?|(?&lt;!\.)\.{2}(?!\.)</string>
 			<key>name</key>
 			<string>keyword.operator.silica</string>
 		</dict>
-	</array>
+		<key>system</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#system-constant</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#system-function</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#system-api</string>
+				</dict>
+			</array>
+		</dict>
+		<key>system-api</key>
+		<dict>
+			<key>match</key>
+			<string>(?&lt;![^.]\.|:)\b(bit\.(blogic_rshift|tobits|blshift|brshift|bxor|bor|band|bnot|tonumb)|(colors|colours)\.(combine|subtract|test)|coroutine\.(create|resume|running|status|wrap|yield)|math\.(abs|acos|asin|atan2?|ceil|cosh?|deg|exp|floor|fmod|frexp|ldexp|log|log10|max|min|modf|pow|rad|random|randomseed|sinh?|sqrt|tanh?)|os\.(version|getComputerID|computerID|getComputerLabel|computerLabel|setComputerLabel|run|loadAPI|unloadAPI|pullEvent|pullEventRaw|queueEvent|clock|startTimer|sleep|time|day|setAlarm|shutdown|reboot)|shell\.(exit|dir|setDir|path|setPath|resolve|resolveProgram|aliases|setAlias|clearAlias|programs|run|getRunningProgram)|string\.(byte|char|dump|find|format|gmatch|gsub|len|lower|match|rep|reverse|sub|upper)|table\.(foreachi|foreach|getn|concat|insert|maxn|remove|sort)vector\.new)\b(?=[({])</string>
+			<key>name</key>
+			<string>support.function.library.silica</string>
+		</dict>
+		<key>system-constant</key>
+		<dict>
+			<key>match</key>
+			<string>(?&lt;![^.]\.|:)\b(false|nil|true|_G|_VERSION|math\.(pi|huge))\b|(?&lt;![.])\.{3}(?!\.)</string>
+			<key>name</key>
+			<string>constant.language.silica</string>
+		</dict>
+		<key>system-function</key>
+		<dict>
+			<key>match</key>
+			<string>(?&lt;![^.]\.|:)\b(getfenv|getmetatable|ipairs|pairs|rawequal|rawget|rawset|setfenv|setmetatable|next|select|tonumber|tostring|type|unpack)\b(?=[({"''])</string>
+			<key>name</key>
+			<string>support.function.silica</string>
+		</dict>
+		<key>valuetype</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#valuetype-with-default</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#valuetype-no-default</string>
+				</dict>
+			</array>
+		</dict>
+		<key>valuetype-no-default</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.silica</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.silica</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\b([A-Z]\w*)\b\s*?(\.(?:allowsNil|link))?</string>
+			<key>name</key>
+			<string>meta.type.silica</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#valuetype-parameters</string>
+				</dict>
+			</array>
+		</dict>
+		<key>valuetype-parameters</key>
+		<dict>
+			<key>name</key>
+			<string>variable.parameter.function.silica</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#literal</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#system</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#keyword</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#operator</string>
+				</dict>
+			</array>
+		</dict>
+		<key>valuetype-with-default</key>
+		<dict>
+			<key>begin</key>
+			<string>\b([A-Z]\w*)\b\s*?(\()</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.type.silica</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.begin.silica</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\))(\.(?:allowsNil|link))?</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.parameters.end.silica</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.silica</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.type.silica</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#valuetype-parameters</string>
+				</dict>
+			</array>
+		</dict>
+		<key>word-operator</key>
+		<dict>
+			<key>match</key>
+			<string>\b(and|or|not)\b</string>
+			<key>name</key>
+			<string>keyword.operator.silica</string>
+		</dict>
+	</dict>
 	<key>scopeName</key>
 	<string>source.silica</string>
 	<key>uuid</key>
