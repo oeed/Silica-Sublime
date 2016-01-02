@@ -3,6 +3,6 @@
 	${0:-- Code here...}
 end]]></content>
     <tabTrigger>fori</tabTrigger>
-    <scope>source.computercraft</scope>
+    <scope>source.silica</scope>
     <description>for i, v in ipairs()</description>
 </snippet>

@@ -8,5 +8,5 @@ function ${TM_FILENAME/(.+)\..+/$1/}.static.${1:propertyName}:set( ${1:propertyN
 end
 ]]></content>
 	<tabTrigger>ss</tabTrigger>
-	<scope>source.computercraft</scope>
+	<scope>source.silica</scope>
 </snippet>

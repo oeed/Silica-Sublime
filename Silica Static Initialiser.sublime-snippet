@@ -5,5 +5,5 @@ function ${TM_FILENAME/(.+)\..+/$1/}.static:initialise( ${1:...} )
 end
 ]]></content>
 	<tabTrigger>si</tabTrigger>
-	<scope>source.computercraft</scope>
+	<scope>source.silica</scope>
 </snippet>

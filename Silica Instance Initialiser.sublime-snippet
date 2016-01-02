@@ -5,5 +5,5 @@ function ${TM_FILENAME/(.+)\..+/$1/}:initialise( ${1:...} )
 end
 ]]></content>
 	<tabTrigger>ii</tabTrigger>
-	<scope>source.computercraft</scope>
+	<scope>source.silica</scope>
 </snippet>

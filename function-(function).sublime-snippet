@@ -3,6 +3,6 @@
 	${0:-- Code here...}
 end]]></content>
     <tabTrigger>function</tabTrigger>
-    <scope>source.computercraft</scope>
+    <scope>source.silica</scope>
     <description>function</description>
 </snippet>

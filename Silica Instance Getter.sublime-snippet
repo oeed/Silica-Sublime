@@ -8,5 +8,5 @@ function ${TM_FILENAME/(.+)\..+/$1/}.${1:propertyName}:get()
 end
 ]]></content>
 	<tabTrigger>ig</tabTrigger>
-	<scope>source.computercraft</scope>
+	<scope>source.silica</scope>
 </snippet>

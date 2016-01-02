@@ -9,5 +9,5 @@ function ${TM_FILENAME/(.+)\..+/$1/}.static:${1:functionName}( ${3:Any} ${4:arg1
 end
 ]]></content>
 	<tabTrigger>sf</tabTrigger>
-	<scope>source.computercraft</scope>
+	<scope>source.silica</scope>
 </snippet>

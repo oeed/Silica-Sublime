@@ -3,6 +3,6 @@
 	${0:-- Code here...}
 end]]></content>
     <tabTrigger>for</tabTrigger>
-    <scope>source.computercraft</scope>
+    <scope>source.silica</scope>
     <description>for i = 1, 10</description>
 </snippet>

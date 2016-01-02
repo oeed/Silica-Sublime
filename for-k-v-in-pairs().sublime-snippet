@@ -3,6 +3,6 @@
 	${0:-- Code here...}
 end]]></content>
     <tabTrigger>forp</tabTrigger>
-    <scope>source.computercraft</scope>
+    <scope>source.silica</scope>
     <description>for k, v in pairs()</description>
 </snippet>

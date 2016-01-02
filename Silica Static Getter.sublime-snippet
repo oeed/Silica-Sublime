@@ -8,5 +8,5 @@ function ${TM_FILENAME/(.+)\..+/$1/}.static.${1:propertyName}:get()
 end
 ]]></content>
 	<tabTrigger>sg</tabTrigger>
-	<scope>source.computercraft</scope>
+	<scope>source.silica</scope>
 </snippet>

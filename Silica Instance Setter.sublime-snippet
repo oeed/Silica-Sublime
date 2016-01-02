@@ -8,5 +8,5 @@ function ${TM_FILENAME/(.+)\..+/$1/}.${1:propertyName}:set( ${1:propertyName} )
 end
 ]]></content>
 	<tabTrigger>is</tabTrigger>
-	<scope>source.computercraft</scope>
+	<scope>source.silica</scope>
 </snippet>
