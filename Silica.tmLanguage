@@ -588,7 +588,7 @@
 		<key>system-function</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;![^.]\.|:)\b(getfenv|getmetatable|ipairs|pairs|rawequal|rawget|rawset|setfenv|setmetatable|next|select|tonumber|tostring|type|unpack)\b(?=[({"''])</string>
+			<string>(?&lt;![^.]\.|:)\b(log|getfenv|getmetatable|ipairs|pairs|rawequal|rawget|rawset|setfenv|setmetatable|next|select|tonumber|tostring|type|unpack)\b(?=[({"''])</string>
 			<key>name</key>
 			<string>support.function.silica</string>
 		</dict>

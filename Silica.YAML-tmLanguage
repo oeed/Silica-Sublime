@@ -250,7 +250,7 @@ repository:
 
   # System functions (not Silica functions)
   system-function:
-    match: (?<![^.]\.|:)\b(getfenv|getmetatable|ipairs|pairs|rawequal|rawget|rawset|setfenv|setmetatable|next|select|tonumber|tostring|type|unpack)\b(?=[({"''])
+    match: (?<![^.]\.|:)\b(log|getfenv|getmetatable|ipairs|pairs|rawequal|rawget|rawset|setfenv|setmetatable|next|select|tonumber|tostring|type|unpack)\b(?=[({"''])
     name: support.function.silica
 
   # System API functions (not Silica API functions)
